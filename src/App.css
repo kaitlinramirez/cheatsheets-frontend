@@ -1,0 +1,58 @@
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: thin solid rgb(212, 212, 212);
+  height: 10vh;
+  justify-content: space-around;
+  background-color: white;
+}
+
+.App {
+  background-color: #ffe9ed;
+}
+
+
+#cheatsheets {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  width: 45vw;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: white;
+  margin-bottom: 20px;
+}
+
+#cheatsheets > small {
+  margin-bottom: 20px;
+}
+
+
+#cheatsheets > button {
+  width: 20vw;
+  margin: 20vw;
+}
+
+#sheetBody {
+  display: flex;
+  flex-direction: row;
+}
+
+#form {
+  display: flex;
+  flex-direction: column;
+  padding-left: 7vw;
+}
+
+#sheetform > button {
+  width: 20vw;
+  margin-left: 10vw;
+}
+
+#sheetform {
+  display: flex;
+  flex-direction: column;
+  width: 40vw;
+}
