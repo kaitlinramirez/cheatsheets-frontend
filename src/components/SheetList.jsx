@@ -9,7 +9,8 @@ const SheetList = props => {
                 name={sheet.name}
                 snippet={sheet.snippet}
                 description={sheet.description}
-                deleteCheatsheet={props.deleteCheatsheet}/>
+                deleteCheatsheet={props.deleteCheatsheet}
+                getEditId={props.getEditId}/>
   })
   return (
     <section>

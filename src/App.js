@@ -12,6 +12,7 @@ class App extends Component {
     this.state = {
       data: [],
       load: false,
+      sent: false,
       id:'',
       name: '',
       snippet: '',
@@ -20,6 +21,20 @@ class App extends Component {
   }
 
   componentDidMount() {
+    this.fetchData()
+      this.handleChange = this.handleChange.bind(this)
+      this.addCheatsheet = this.addCheatsheet.bind(this)
+      this.deleteCheatsheet = this.deleteCheatsheet.bind(this)
+      this.getEditId = this.getEditId.bind(this)
+  }
+
+  handleChange(event) {
+      this.setState({
+        [event.target.name]: event.target.value
+      })
+    }
+
+  fetchData = () => {
     fetch('https://cheetsheets.herokuapp.com/sheets')
       .then(response => response.json())
       .then(sheets => {
@@ -29,29 +44,25 @@ class App extends Component {
           load: true
         })
       })
-      this.handleChange = this.handleChange.bind(this)
-      this.addCheatsheet = this.addCheatsheet.bind(this)
-      this.deleteCheatsheet = this.deleteCheatsheet.bind(this)
   }
-
-  handleChange (event) {
-      this.setState({
-        [event.target.name]: event.target.value
-      })
-    }
 
   addCheatsheet = (event) => {
       event.preventDefault()
-      var newId = this.state.data.cheatsheets.length + 1
       fetch(('https://cheetsheets.herokuapp.com/sheets'), {
         method: "POST",
         headers: new Headers({"content-type": "application/json"}),
         body: JSON.stringify({
-          id: newId,
           name: this.state.name,
           snippet: this.state.snippet,
           description: this.state.description
         })
+      })
+      .then(response => {
+        return response.json()
+      })
+      .then(response => {
+        this.fetchData()
+        console.log(response)
       })
     }
 
@@ -64,7 +75,9 @@ class App extends Component {
         method: "DELETE",
         headers: new Headers({"content-type": "application/json"})
       })
-      .then(alert('deleted'))
+      .then(response => {
+        this.fetchData()
+      })
     }
 
     editCheatsheet = (event) => {
@@ -80,8 +93,11 @@ class App extends Component {
         })
       })
       .then(response => response.json())
-      .then(data => {
-        alert('Thanks for the edit!')
+    }
+
+    getEditId = (id) => {
+      this.setState({
+        editId: id
       })
     }
 
@@ -95,9 +111,9 @@ class App extends Component {
             <Switch>
               {this.state.load &&
               <div id="sheetBody">
-                <Route exact path='/' component={() => <SheetList list={this.state.data} editCheatsheet={this.editCheatsheet} deleteCheatsheet={this.deleteCheatsheet} deleteId={this.state.deleteId}/>} />
+                <Route exact path='/' component={() => <SheetList list={this.state.data} editCheatsheet={this.editCheatsheet} deleteCheatsheet={this.deleteCheatsheet} getEditId={this.getEditId}/>} />
                 <Route exact path='/' render={() => <SheetForm handleChange={this.handleChange} addCheatsheet={this.addCheatsheet}/>} />
-                <Route exact path='/Edit' render={() => <Edit handleChange={this.handleChange} snippet={this.state.snippet} editCheatsheet={this.editCheatsheet}/>} />
+                <Route exact path='/Edit' render={() => <Edit handleChange={this.handleChange} snippet={this.state.snippet} editCheatsheet={this.editCheatsheet} editId={this.state.editId}/>} />
               </div>
               }
             </Switch>
