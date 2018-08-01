@@ -1,14 +1,18 @@
-## Galvanize Tower
+# Cheatsheets
 
-In this project, you'll build a full-stack application that has an API, reads and writes data, and uses a library. The topic is up to you!
+## ![](img.png)
 
-## Requirements
+## [Live Site](https://cheatsheets-6b13a.firebaseapp.com/)
 
-* Has an API that can list, read, update, create, and delete data
-* Has a database backing that API that has at least 2 different tables
-* Has a front-end that uses a application framework or component library that:
-    * Consumes your API (list, read, update, create, and delete actions)
-    * Uses some non-trivial (charting, mapping, payment, etc.) library
-    * Has at least 2 end-to-end tests
+This cheatsheets application enables people to access helpful snippets in a wide range of topics from installing Knex to important React concepts along with a brief description of what the snippet is meant for. It also allows users to add their own snippets.
 
-Add a link to your [deployed front-end URL](https://cheatsheets-6b13a.firebaseapp.com/), your [deployed API URL](https://cheetsheets.herokuapp.com/sheets), and any [code repos you used]().
+
+## [Back end repo](https://cheetsheets.herokuapp.com/sheets)
+
+## Installation:
+
+> -Clone this repo.
+
+> -run `npm install`
+
+> -run 'npm start' to run locally
